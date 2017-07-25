@@ -1,0 +1,64 @@
+ 
+<div class="col s12 m4">
+  <div class="card-panel transparent">
+    <h3><strong>Add a Burger</strong></h3>
+    <form class="create-update-form" action="/" method="POST">
+
+      <div class="form-group">
+        <label for="ca" class="black-text"><h5>Burger Name:</h5></label>
+        <input type="text" id="ca" name="name">
+      </div>
+
+      <button class="btn waves-effect waves-light black-text" type="submit" name="action">Order Burger
+        <i class="material-icons right black-text">send</i>
+      </button>    
+    </form>
+  </div>  
+</div>
+
+<div class="col s12 m4">
+  <div class="card-panel transparent">
+    <h3><strong>Devour The Burger!</strong></h3>
+
+    <ul>
+      {{#each burger}}
+        {{#unless this.devoured}}
+          <li>
+            {{this.burger_name}}
+
+            <form action="/{{this.id}}?_method=PUT" method="POST">
+              <input type="hidden" name="devoured" value="true">
+
+              <button class="btn waves-effect waves-light black-text" type="submit" name="action">EAT TIME!
+                <i class="material-icons right black-text">restaurant_menu</i>
+
+              </button>
+            </form>
+
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+<div class="col s12 m4">
+  <div class="card-panel transparent">
+    <h3><strong>Ate The Burger!!</strong></h3>
+
+    <ul>
+      {{#each burger}}
+        {{#if this.devoured}}
+          <li>
+          <div class="chip">
+            {{this.burger_name}}
+          </div>
+          
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+
+  </div>
+</div>
+
